@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="レッツメディア株式会社の会社概要。広告運用のプロフェッショナル集団。">
+    <title>会社概要 | レッツメディア</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="fabicon.png">
+    <link rel="apple-touch-icon" href="fabicon.png">
+
+    <!-- OGP (Open Graph Protocol) -->
+    <meta property="og:title" content="会社概要 | レッツメディア">
+    <meta property="og:description" content="レッツメディア株式会社の会社概要。広告運用のプロフェッショナル集団。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="oGP.png">
+    <meta property="og:site_name" content="レッツメディア">
+    <meta property="og:locale" content="ja_JP">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="会社概要 | レッツメディア">
+    <meta name="twitter:description" content="レッツメディア株式会社の会社概要。広告運用のプロフェッショナル集団。">
+    <meta name="twitter:image" content="oGP.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- 構造化データ (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "レッツメディア株式会社",
+        "alternateName": "Let's Media",
+        "url": "",
+        "logo": "logoheda.jpg",
+        "foundingDate": "2021",
+        "description": "広告運用のプロフェッショナル集団",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "JP"
+        }
+    }
+    </script>
+
+    <style>
+        /* Buildings and under the railway Font */
+        @font-face {
+            font-family: 'BUR';
+            src: url('Buildingsandundertherailwaytracksfree_ver.otf') format('opentype');
+            font-display: swap;
+        }
+        :root {
+            --color-black: #0a0a0a;
+            --color-white: #ffffff;
+            --color-gray: #f5f5f5;
+            --color-dark-gray: #333333;
+            --color-light-gray: #999999;
+            --color-border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--color-black);
+            color: var(--color-white);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================
+           Header
+           ========================================== */
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 6px 25px;
+            background: var(--color-white);
+            border-radius: 50px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-img {
+            height: 24px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            font-family: 'BUR', 'Noto Sans JP', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        /* ==========================================
+           Company Section
+           ========================================== */
+        .company {
+            min-height: 100vh;
+            padding: 120px 40px 80px;
+        }
+
+        .company-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Area */
+        .company-header {
+            margin-bottom: 0;
+            border-top: 1px dashed rgba(255, 255, 255, 0.3);
+            padding-top: 50px;
+        }
+
+        .company-subtitle {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .company-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        /* Content Grid */
+        .company-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            margin-top: 80px;
+            margin-left: 40%;
+        }
+
+        /* Info Section */
+        .info-section {
+            padding-top: 0;
+        }
+
+        .info-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 45px;
+        }
+
+        .info-table {
+            width: 100%;
+        }
+
+        .info-row {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: none;
+        }
+
+        .info-label {
+            width: 60px;
+            flex-shrink: 0;
+            color: var(--color-white);
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
+        .info-value {
+            flex: 1;
+            font-size: 0.95rem;
+            padding-left: 50px;
+        }
+
+        /* Office Section */
+        .office-section {
+            padding-top: 0;
+        }
+
+        .office-icon {
+            width: 50px;
+            height: 70px;
+            margin-bottom: 12px;
+        }
+
+        .office-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .tornado-line {
+            stroke-dasharray: 150;
+            stroke-dashoffset: 150;
+            animation: drawTornado 1.5s ease forwards;
+        }
+
+        .tornado-line:nth-child(1) { animation-delay: 0s; }
+        .tornado-line:nth-child(2) { animation-delay: 0.4s; }
+        .tornado-line:nth-child(3) { animation-delay: 0.8s; }
+        .tornado-line:nth-child(4) { animation-delay: 1.1s; }
+
+        @keyframes drawTornado {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .office-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 35px;
+        }
+
+        .office-address {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .office-address span {
+            display: block;
+        }
+
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 0.95rem;
+            color: var(--color-white);
+            transition: opacity 0.3s ease;
+        }
+
+        .map-link:hover {
+            opacity: 0.7;
+        }
+
+        .map-link .arrow {
+            font-size: 0.85rem;
+        }
+
+        /* ==========================================
+           Footer
+           ========================================== */
+        .footer {
+            padding: 40px 20px;
+            background: var(--color-black);
+            color: var(--color-white);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo {
+            font-family: 'BUR', 'Noto Sans JP', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            opacity: 0.4;
+        }
+
+        /* ==========================================
+           Responsive
+           ========================================== */
+        @media (max-width: 900px) {
+            .company-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                max-width: 100%;
+                margin-left: 0;
+            }
+
+            .company {
+                padding: 100px 20px 60px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .company-title {
+                font-size: 2rem;
+            }
+
+            .info-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .info-label {
+                width: 100%;
+            }
+
+            .info-value {
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="logoheda.jpg" alt="レッツメディア" class="logo-img">
+        </a>
+    </header>
+
+    <!-- Company Section -->
+    <section class="company">
+        <div class="company-container">
+            <!-- Header -->
+            <div class="company-header">
+                <p class="company-subtitle">( 会社の基本情報をご紹介します！ )</p>
+                <h1 class="company-title">Company</h1>
+            </div>
+
+            <!-- Content -->
+            <div class="company-content">
+                <!-- Info Section -->
+                <div class="info-section">
+                    <h2 class="info-title">会社概要</h2>
+                    <div class="info-table">
+                        <div class="info-row">
+                            <div class="info-label">社名</div>
+                            <div class="info-value">レッツメディア株式会社</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">設立</div>
+                            <div class="info-value">2021年</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">代表</div>
+                            <div class="info-value">要確認</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">資本金</div>
+                            <div class="info-value">要確認</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Office Section -->
+                <div class="office-section">
+                    <!-- Decorative Icon - Tornado/Spiral Animation -->
+                    <div class="office-icon">
+                        <svg viewBox="0 0 50 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 上部の大きな渦 -->
+                            <path class="tornado-line" d="M40 8 C50 12, 48 22, 38 26 C28 30, 18 24, 22 14 C24 8, 32 6, 40 8"
+                                  stroke="#9ACD32" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <!-- 中央の楕円 -->
+                            <ellipse class="tornado-line" cx="28" cy="32" rx="10" ry="6" transform="rotate(-15 28 32)"
+                                     stroke="#9ACD32" stroke-width="2" fill="none"/>
+                            <!-- 下部の渦巻き -->
+                            <path class="tornado-line" d="M20 40 C8 44, 12 52, 24 50 C36 48, 38 56, 26 58"
+                                  stroke="#9ACD32" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <path class="tornado-line" d="M26 58 C18 60, 20 66, 28 65"
+                                  stroke="#9ACD32" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2 class="office-title">オフィス</h2>
+                    <div class="office-address">
+                        <span>〒要確認</span>
+                        <span>住所要確認</span>
+                        <span>TEL: 要確認</span>
+                    </div>
+                    <a href="#" class="map-link">
+                        ( Google Map <span class="arrow">↗</span> )
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">レッツメディア</div>
+        <p class="footer-text">© 2024 Let's Media. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
