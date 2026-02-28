@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="レッツメディアへのお問い合わせ。広告運用、マーケティングに関するご相談はこちらから。">
+    <title>お問い合わせ | レッツメディア</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="fabicon.png">
+    <link rel="apple-touch-icon" href="fabicon.png">
+
+    <!-- OGP (Open Graph Protocol) -->
+    <meta property="og:title" content="お問い合わせ | レッツメディア">
+    <meta property="og:description" content="レッツメディアへのお問い合わせ。広告運用、マーケティングに関するご相談はこちらから。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="oGP.png">
+    <meta property="og:site_name" content="レッツメディア">
+    <meta property="og:locale" content="ja_JP">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="お問い合わせ | レッツメディア">
+    <meta name="twitter:description" content="レッツメディアへのお問い合わせ。広告運用、マーケティングに関するご相談はこちらから。">
+    <meta name="twitter:image" content="oGP.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- 構造化データ (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "お問い合わせ",
+        "description": "レッツメディアへのお問い合わせ。広告運用、マーケティングに関するご相談はこちらから。",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "レッツメディア株式会社"
+        }
+    }
+    </script>
+
+    <style>
+        /* Buildings and under the railway Font */
+        @font-face {
+            font-family: 'BUR';
+            src: url('Buildingsandundertherailwaytracksfree_ver.otf') format('opentype');
+            font-display: swap;
+        }
+
+        :root {
+            --color-black: #0a0a0a;
+            --color-white: #ffffff;
+            --color-gray: #f5f5f5;
+            --color-dark-gray: #333333;
+            --color-light-gray: #999999;
+            --color-red: #cc0000;
+            --color-border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--color-white);
+            color: var(--color-black);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================
+           Header
+           ========================================== */
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 6px 25px;
+            background: var(--color-white);
+            border-radius: 50px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-img {
+            height: 24px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            font-family: 'BUR', 'Noto Sans JP', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        /* ==========================================
+           Contact Section
+           ========================================== */
+        .contact {
+            min-height: 100vh;
+            padding: 120px 40px 80px;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        /* Left Side - Title */
+        .contact-left {
+            position: sticky;
+            top: 120px;
+        }
+
+        .contact-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        .contact-desc {
+            font-size: 1rem;
+            color: var(--color-dark-gray);
+            line-height: 2;
+        }
+
+        /* Right Side - Form */
+        .contact-right {
+            padding-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 40px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .form-label .required {
+            color: var(--color-red);
+            margin-left: 3px;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 15px 0;
+            font-size: 1rem;
+            font-family: inherit;
+            border: none;
+            border-bottom: 1px solid var(--color-border);
+            background: transparent;
+            transition: border-color 0.3s ease;
+            outline: none;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            border-bottom-color: var(--color-black);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--color-light-gray);
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0 center;
+            padding-right: 20px;
+        }
+
+        .form-select option {
+            padding: 10px;
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Checkbox Group */
+        .checkbox-group {
+            margin-bottom: 40px;
+        }
+
+        .checkbox-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 30px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .checkbox-input {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--color-border);
+            border-radius: 3px;
+            appearance: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-input:checked {
+            background: var(--color-black);
+            border-color: var(--color-black);
+        }
+
+        .checkbox-input:checked::after {
+            content: '✓';
+            display: block;
+            text-align: center;
+            color: white;
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        /* Privacy Agreement */
+        .privacy-agreement {
+            margin-bottom: 40px;
+        }
+
+        .privacy-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .privacy-link {
+            color: var(--color-red);
+            text-decoration: underline;
+        }
+
+        /* Submit Button */
+        .submit-button {
+            width: 100%;
+            padding: 20px 40px;
+            background: #b0b0b0;
+            color: var(--color-white);
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: inherit;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: var(--color-black);
+        }
+
+        .submit-button:disabled {
+            background: #d0d0d0;
+            cursor: not-allowed;
+        }
+
+        /* ==========================================
+           Footer
+           ========================================== */
+        .footer {
+            padding: 60px 20px;
+            background: var(--color-black);
+            color: var(--color-white);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'BUR', 'Noto Sans JP', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* ==========================================
+           Responsive
+           ========================================== */
+        @media (max-width: 900px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .contact-left {
+                position: relative;
+                top: auto;
+            }
+
+            .contact {
+                padding: 100px 20px 60px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .contact-title {
+                font-size: 2rem;
+            }
+
+            .checkbox-options {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="logoheda.jpg" alt="レッツメディア" class="logo-img">
+        </a>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="contact-container">
+            <!-- Left Side -->
+            <div class="contact-left">
+                <h1 class="contact-title">BeyondFuture<br>Starts Here</h1>
+                <p class="contact-desc">
+                    圧倒的未来を共につくる<br>
+                    起業家、投資家、パートナーの方々からの<br>
+                    お問い合わせをお待ちしております。
+                </p>
+            </div>
+
+            <!-- Right Side - Form -->
+            <div class="contact-right">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label class="form-label">Name<span class="required">*</span></label>
+                        <input type="text" class="form-input" placeholder="山田 太郎" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Company</label>
+                        <input type="text" class="form-input" placeholder="レッツメディア株式会社">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email Address<span class="required">*</span></label>
+                        <input type="email" class="form-input" placeholder="example@mail.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Theme<span class="required">*</span></label>
+                        <select class="form-select" required>
+                            <option value="" disabled selected>お問い合わせ内容を選択してください。</option>
+                            <option value="advertising">広告運用について</option>
+                            <option value="consulting">コンサルティングについて</option>
+                            <option value="partnership">業務提携について</option>
+                            <option value="career">採用について</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Message<span class="required">*</span></label>
+                        <textarea class="form-textarea" placeholder="お問い合わせ内容をご記入ください。" required></textarea>
+                    </div>
+
+                    <div class="privacy-agreement">
+                        <label class="privacy-label">
+                            <input type="checkbox" class="checkbox-input" id="privacy-check" required>
+                            <span><a href="privacy.html" class="privacy-link">プライバシーポリシー</a>に同意する</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-button">送信する</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">レッツメディア</div>
+        <p class="footer-text">© 2024 Let's Media. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Form submission handler
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('お問い合わせを受け付けました。\n担当者より折り返しご連絡いたします。');
+        });
+    </script>
+</body>
+</html>
