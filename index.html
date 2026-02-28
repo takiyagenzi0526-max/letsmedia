@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="レッツは圧倒的未来のために、世界を一変させる次なる起業家を支援するChanger Capitalです。">
+    <title>Changer Capital レッツ</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="fabicon.png">
+    <link rel="apple-touch-icon" href="fabicon.png">
+
+    <!-- OGP (Open Graph Protocol) -->
+    <meta property="og:title" content="Changer Capital レッツ">
+    <meta property="og:description" content="レッツは圧倒的未来のために、世界を一変させる次なる起業家を支援するChanger Capitalです。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="oGP.png">
+    <meta property="og:site_name" content="レッツメディア">
+    <meta property="og:locale" content="ja_JP">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Changer Capital レッツ">
+    <meta name="twitter:description" content="レッツは圧倒的未来のために、世界を一変させる次なる起業家を支援するChanger Capitalです。">
+    <meta name="twitter:image" content="oGP.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Three.js Font Loader and Text Geometry -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/FontLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/geometries/TextGeometry.js"></script>
+
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- 構造化データ (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "レッツメディア株式会社",
+        "alternateName": "Let's Media",
+        "url": "",
+        "logo": "logoheda.jpg",
+        "description": "レッツは圧倒的未来のために、世界を一変させる次なる起業家を支援するChanger Capitalです。",
+        "foundingDate": "2021",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "JP"
+        },
+        "sameAs": []
+    }
+    </script>
+</head>
+<body>
+    <!-- Loading Screen - ANRI Style -->
+    <div id="loading-screen">
+        <div class="loader">
+            <video class="loader-video" autoplay muted playsinline>
+                <source src="letsmedia読み込み.mp4" type="video/mp4">
+            </video>
+            <div class="loader-orbit">
+                <div class="loader-percent top-right">0%</div>
+                <div class="loader-percent bottom-left">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="#" class="logo" data-page="0">
+            <img src="logoheda.jpg" alt="レッツメディア" class="logo-img">
+        </a>
+        <nav class="nav-center">
+            <a href="#" class="nav-link" data-page="0">ホーム</a>
+            <a href="#" class="nav-link" data-page="1">事業内容</a>
+            <a href="#" class="nav-link" data-page="2">お問い合わせ</a>
+            <span class="nav-divider">|</span>
+            <span class="story-of">story of</span>
+            <a href="company.html" class="featured-company">
+                <span>会社概要</span>
+                <span class="arrow">→</span>
+            </a>
+        </nav>
+        <button class="menu-toggle" aria-label="メニューを開く">
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+        </button>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <nav class="mobile-nav">
+            <a href="#" class="mobile-nav-link" data-page="0">ホーム</a>
+            <a href="#" class="mobile-nav-link" data-page="1">事業内容</a>
+            <a href="#" class="mobile-nav-link" data-page="2">お問い合わせ</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Three.js Canvas (shared across all pages) -->
+        <div id="three-container"></div>
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-bold">AdShift</span>
+                <span class="title-italic">Collective</span>
+            </h1>
+            <!-- 3D Logo is rendered by Three.js -->
+        </div>
+
+        <!-- Prev/Next Navigation -->
+        <button class="nav-circle nav-prev" data-direction="prev">
+            <span class="nav-arrow">←</span>
+            <span class="nav-text">Prev</span>
+        </button>
+        <button class="nav-circle nav-next" data-direction="next">
+            <span class="nav-text">Next</span>
+            <span class="nav-arrow">→</span>
+        </button>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <button class="bottom-link prev-page" data-direction="prev">Projects</button>
+            <span class="bottom-link current-page">ホーム</span>
+            <button class="bottom-link next-page" data-direction="next">事業内容</button>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <span class="scroll-text">Scroll To Next Contents</span>
+        </div>
+
+        <!-- View Button -->
+        <button class="view-button">
+            <span>View [</span>
+            <span class="view-page">Home</span>
+            <span>]</span>
+            <span class="view-arrow">↓</span>
+        </button>
+
+        <!-- Page Dots -->
+        <div class="page-dots">
+            <button class="dot active" data-page="0"></button>
+            <button class="dot" data-page="1"></button>
+            <button class="dot" data-page="2"></button>
+            <button class="dot mobile-only" data-page="3"></button>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+</body>
+</html>

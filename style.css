@@ -1,0 +1,972 @@
+/* ==========================================
+   Buildings and under the railway Font
+   ========================================== */
+@font-face {
+    font-family: 'BUR';
+    src: url('Buildingsandundertherailwaytracksfree_ver.otf') format('opentype');
+    font-display: swap;
+}
+
+/* ==========================================
+   Reset & Base Styles
+   ========================================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-bg: #c8c8c8;
+    --color-text: #000;
+    --color-white: #fff;
+    --color-black: #000;
+    --font-primary: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+    --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow: hidden;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    overflow: hidden;
+    transition: background-color 0.8s var(--transition-smooth);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    color: inherit;
+    font-size: inherit;
+}
+
+/* ==========================================
+   Loading Screen - ANRI Style (Black with rotating circle)
+   ========================================== */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#loading-screen.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Center video - appears FIRST */
+.loader-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 300px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    opacity: 0;
+    animation: loaderVideoIn 0.6s ease 0.1s forwards;
+    z-index: 2;
+}
+
+@keyframes loaderVideoIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Keep text styles for other pages */
+.loader-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    opacity: 0;
+    animation: loaderTextIn 0.6s ease 0.1s forwards;
+    z-index: 2;
+}
+
+@keyframes loaderTextIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.loader-text .text-bold {
+    font-weight: 700;
+}
+
+.loader-text .text-italic {
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* Orbit container - perfect circle like ANRI */
+.loader-orbit {
+    position: absolute;
+    width: 90vmin;
+    height: 90vmin;
+    opacity: 0;
+    animation: loaderOrbitIn 0.8s ease 0.5s forwards;
+}
+
+@keyframes loaderOrbitIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Circle border - solid thin line like ANRI */
+.loader-orbit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: orbitCircleRotate 8s linear infinite;
+}
+
+@keyframes orbitCircleRotate {
+    from { transform: rotateZ(0deg); }
+    to { transform: rotateZ(360deg); }
+}
+
+/* Percentage indicators - appear AFTER circle */
+.loader-percent {
+    position: absolute;
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-style: italic;
+    opacity: 0;
+    white-space: nowrap;
+}
+
+/* Initial positions - will be overridden by JS */
+.loader-percent.top-right {
+    top: 50%;
+    left: 50%;
+}
+
+.loader-percent.bottom-left {
+    top: 50%;
+    left: 50%;
+}
+
+/* Hide old loader-circle */
+.loader-circle {
+    display: none;
+}
+
+.loader-bar {
+    display: none;
+}
+
+.loader-progress {
+    display: none;
+}
+
+@keyframes fadeInText {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================
+   Header
+   ========================================== */
+.header {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 25px;
+    background: var(--color-white);
+    border-radius: 50px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    gap: 25px;
+    opacity: 0;
+    animation: fadeInDown 0.8s ease 2.2s forwards;
+    white-space: nowrap;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 24px;
+    width: auto;
+    display: block;
+}
+
+.logo-text {
+    font-family: 'BUR', 'Noto Sans JP', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.nav-center {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.lang {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.lang.active {
+    opacity: 1;
+    font-weight: 700;
+}
+
+.lang-divider {
+    opacity: 0.3;
+}
+
+.nav-link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    position: relative;
+    padding: 3px 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-black);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    font-weight: 700;
+}
+
+.nav-divider {
+    opacity: 0.3;
+    margin: 0 5px;
+}
+
+.story-of {
+    font-style: italic;
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.featured-company {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.featured-company:hover {
+    background: var(--color-black);
+    color: var(--color-white);
+}
+
+.featured-company .arrow {
+    font-size: 0.6rem;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+}
+
+.menu-line {
+    width: 24px;
+    height: 2px;
+    background: var(--color-black);
+    transition: all 0.3s ease;
+}
+
+/* ==========================================
+   Mobile Menu
+   ========================================== */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-white);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.mobile-nav-link {
+    font-size: 2rem;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-nav-link.active {
+    font-weight: 700;
+}
+
+.mobile-lang {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+}
+
+/* ==========================================
+   Main & Hero Section
+   ========================================== */
+.main {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.hero.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero:first-of-type {
+    opacity: 1;
+    visibility: visible;
+}
+
+#three-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ==========================================
+   Hero Content
+   ========================================== */
+.hero-content {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 1s ease 2.5s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.hero-title {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 0;
+    white-space: nowrap;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+}
+
+.title-line {
+    font-size: inherit;
+    line-height: 1.1;
+}
+
+.title-single {
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+.title-bold {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.title-italic {
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* 3D Logo */
+.logo-3d {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.logo-letter {
+    font-size: clamp(4rem, 15vw, 10rem);
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--color-black);
+    text-stroke: 2px var(--color-black);
+    position: relative;
+    display: inline-block;
+    animation: letterFloat 3s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.2s);
+}
+
+.logo-letter:nth-child(1) { --i: 0; }
+.logo-letter:nth-child(2) { --i: 1; }
+.logo-letter:nth-child(3) { --i: 2; }
+.logo-letter:nth-child(4) { --i: 3; }
+
+@keyframes letterFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(-2deg); }
+    75% { transform: translateY(10px) rotate(2deg); }
+}
+
+/* ==========================================
+   Navigation Circles (Prev/Next)
+   ========================================== */
+.nav-circle {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 120px;
+    height: 120px;
+    background: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-style: italic;
+    z-index: 100;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s var(--transition-smooth);
+    opacity: 0;
+    animation: fadeIn 0.8s ease 2.8s forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.nav-prev {
+    left: 30px;
+}
+
+.nav-next {
+    right: 30px;
+}
+
+.nav-circle:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+.nav-arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-prev:hover .nav-arrow {
+    transform: translateX(-5px);
+}
+
+.nav-next:hover .nav-arrow {
+    transform: translateX(5px);
+}
+
+/* ==========================================
+   Bottom Navigation
+   ========================================== */
+.bottom-nav {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 40px;
+    z-index: 100;
+    opacity: 0;
+    animation: fadeIn 0.8s ease 3s forwards;
+}
+
+.bottom-link {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+}
+
+.bottom-link.prev-page,
+.bottom-link.next-page {
+    min-width: 100px;
+    text-align: center;
+}
+
+.bottom-link.prev-page {
+    text-align: right;
+}
+
+.bottom-link.next-page {
+    text-align: left;
+}
+
+.bottom-link.current-page {
+    font-size: 2.5rem;
+    font-weight: 700;
+    opacity: 1;
+}
+
+.bottom-link:hover {
+    opacity: 0.7;
+}
+
+/* ==========================================
+   Scroll Indicator
+   ========================================== */
+.scroll-indicator {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    opacity: 0;
+    animation: fadeIn 0.8s ease 3.2s forwards, bounce 2s ease-in-out infinite 3.5s;
+}
+
+.scroll-text {
+    font-size: 0.9rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.05em;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* ==========================================
+   Page Dots
+   ========================================== */
+.page-dots {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+    opacity: 0;
+    animation: fadeIn 0.8s ease 3.4s forwards;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: var(--color-black);
+    border-radius: 50%;
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.dot:hover {
+    opacity: 0.7;
+}
+
+/* モバイルのみ表示する4つ目のドット(会社概要用) */
+.dot.mobile-only {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .dot.mobile-only {
+        display: block;
+    }
+}
+
+/* ==========================================
+   View Button
+   ========================================== */
+.view-button {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    background: var(--color-black);
+    color: var(--color-white);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.view-button:hover {
+    background: #333;
+}
+
+.view-page {
+    margin: 0 5px;
+}
+
+.view-arrow {
+    margin-left: 10px;
+}
+
+/* ==========================================
+   Responsive Design
+   ========================================== */
+@media (max-width: 1024px) {
+    .nav-circle {
+        width: 80px;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .nav-prev {
+        left: 15px;
+    }
+
+    .nav-next {
+        right: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 10px 20px;
+    }
+
+    .nav-center {
+        display: none;
+    }
+
+    /* モバイルメニューボタン非表示（Viewボタンで遷移するため不要） */
+    .menu-toggle {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: none;
+    }
+
+    .nav-circle {
+        width: 45px;
+        height: 45px;
+        font-size: 0;
+    }
+
+    .nav-arrow {
+        font-size: 1.5rem;
+    }
+
+    .nav-text {
+        display: none;
+    }
+
+    .bottom-nav {
+        gap: 15px;
+        flex-wrap: nowrap;
+    }
+
+    .bottom-link {
+        font-size: 0.75rem;
+        white-space: nowrap;
+    }
+
+    .bottom-link.prev-page,
+    .bottom-link.next-page {
+        min-width: 80px;
+    }
+
+    .bottom-link.current-page {
+        font-size: 1.4rem;
+    }
+
+    .view-button {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+        gap: 5px;
+        white-space: nowrap;
+        bottom: 60px;
+    }
+
+    .view-page {
+        margin: 0 3px;
+    }
+
+    .view-arrow {
+        margin-left: 5px;
+    }
+
+    .hero-title .title-line {
+        font-size: 2rem;
+    }
+
+    .logo-letter {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        width: auto;
+        padding: 8px 15px;
+        justify-content: center;
+    }
+
+    .nav-circle {
+        width: 38px;
+        height: 38px;
+    }
+
+    .nav-prev {
+        left: 10px;
+    }
+
+    .nav-next {
+        right: 10px;
+    }
+
+    .bottom-nav {
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    .bottom-link {
+        font-size: 0.7rem;
+    }
+
+    .bottom-link.prev-page,
+    .bottom-link.next-page {
+        min-width: 70px;
+    }
+
+    .bottom-link.current-page {
+        font-size: 1.2rem;
+    }
+
+    .view-button {
+        padding: 10px 15px;
+        font-size: 0.75rem;
+        bottom: 50px;
+    }
+
+    .logo-letter {
+        font-size: 3rem;
+        -webkit-text-stroke: 1px var(--color-black);
+    }
+}
+
+/* ==========================================
+   Menu Toggle Animation
+   ========================================== */
+.menu-toggle.active .menu-line:first-child {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active .menu-line:last-child {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ==========================================
+   Page Transition
+   ========================================== */
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-black);
+    z-index: 9999;
+    transform: translateY(100%);
+    transition: transform 0.6s var(--transition-smooth);
+}
+
+.page-transition.active {
+    transform: translateY(0);
+}
+
+/* ==========================================
+   3D Objects Animation Classes
+   ========================================== */
+.float-object {
+    position: absolute;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+/* Glass effect */
+.glass-object {
+    opacity: 0.7;
+    filter: blur(0.5px);
+}
+
+/* Metal effect */
+.metal-object {
+    filter: contrast(1.2) brightness(1.1);
+}
